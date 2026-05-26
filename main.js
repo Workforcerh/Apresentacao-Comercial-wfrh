@@ -71,6 +71,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Fullscreen toggle
+  const fsBtn = document.getElementById('fullscreen-btn');
+  const fsIcon = fsBtn ? fsBtn.querySelector('i') : null;
+
+  function updateFsIcon() {
+    if (!fsIcon) return;
+    const isFs = !!document.fullscreenElement;
+    fsIcon.className = isFs ? 'ph ph-arrows-in' : 'ph ph-arrows-out';
+  }
+
+  if (fsBtn) {
+    fsBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+    document.addEventListener('fullscreenchange', updateFsIcon);
+  }
+
   // Initial HUD setup
   updateHUD();
   

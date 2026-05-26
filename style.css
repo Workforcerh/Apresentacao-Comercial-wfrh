@@ -89,6 +89,7 @@ html, body {
 .ctrl-btn:hover {
   background: var(--gold); color: white; border-color: var(--gold);
 }
+#fullscreen-btn { margin-left: 8px; }
 
 /* Slides Framework */
 #slides-wrapper { position: fixed; inset: 0; width: 100%; height: 100%; }
