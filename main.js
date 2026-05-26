@@ -24,9 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function goToSlide(targetIdx) {
     if (targetIdx < 0 || targetIdx >= totalSlides || targetIdx === currentIdx) return;
-    
+
     const currSlide = slides[currentIdx];
     const nextSlide = slides[targetIdx];
+
+    // Clear ALL inline styles so CSS classes are never overridden
+    slides.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
 
     // Remove classes
     currSlide.classList.remove('is-active', 'is-leaving');
@@ -37,12 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
       // Moving forward
       currSlide.classList.add('is-leaving'); // slides out left
     } else {
-      // Moving backward
-      currSlide.style.transform = 'translateX(60px)'; // Reset to right
-      currSlide.style.opacity = '0';
+      // Moving backward — just remove current, activate next (CSS handles the rest)
+      currSlide.classList.remove('is-active');
     }
 
-    nextSlide.classList.add('is-active');
+    requestAnimationFrame(() => {
+      nextSlide.classList.add('is-active');
+    });
 
     currentIdx = targetIdx;
     updateHUD();

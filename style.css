@@ -323,8 +323,8 @@ html, body {
    ============================================================ */
 
 /* Slide 3: Serviços — People Analytics cortado */
-#slide-3 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
-#slide-3 .services-layout { margin-top: 1.5rem; }
+#slide-2 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+#slide-2 .services-layout { margin-top: 1.5rem; }
 
 /* Slide 4: Benefícios — card "Para seus Colaboradores" sobreposto */
 #slide-4 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
