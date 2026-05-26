@@ -1,0 +1,349 @@
+/* ============================================================
+   TOKENS — WorkForce RH
+   ============================================================ */
+:root {
+  /* Palette */
+  --ink:        #08121F;
+  --prussian:   #112B4A;
+  --gold:       #C9B180;
+  --gold-bright:#E8D5A5;
+  --gold-dim:   #B8A06E;
+  --offwhite:   #FCF9F9;
+  --white-pure: #FFFFFF;
+  --surface:    rgba(255,255,255,0.75);
+  --border:     rgba(201,177,128,0.3);
+  --ink-10:     rgba(8,18,31,0.10);
+  --ink-40:     rgba(8,18,31,0.40);
+  --gold-10:    rgba(201,177,128,0.10);
+  --gold-20:    rgba(201,177,128,0.20);
+  
+  /* Typography */
+  --font-heading: 'Lexend', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  
+  /* Utilities */
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-base:    400ms;
+  --dur-slow:    800ms;
+  --sp-sm:       1rem;
+  --sp-md:       2rem;
+  --sp-lg:       4rem;
+  --r-md:        16px;
+  --shadow-lg:   0 20px 60px rgba(8,18,31,0.08);
+}
+
+/* ============================================================
+   ENGINE & RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  width: 100%; height: 100%; overflow: hidden;
+  background: var(--offwhite);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+.text-gold { color: var(--gold); }
+.text-ink { color: var(--ink); }
+.mt-sm { margin-top: var(--sp-sm); }
+.mb-sm { margin-bottom: var(--sp-sm); }
+.mt-md { margin-top: var(--sp-md); }
+.mt-lg { margin-top: var(--sp-lg); }
+
+/* HUD: Progress Bar */
+#progress-bar {
+  position: fixed; top: 0; left: 0; right: 0; height: 4px;
+  background: var(--gold-10); z-index: 100;
+}
+#progress-fill {
+  height: 100%; width: 0%;
+  background: var(--gold);
+  transition: width var(--dur-slow) var(--ease-expo);
+}
+
+/* HUD: Counter */
+#hud-counter {
+  position: fixed; top: 24px; right: 40px; z-index: 100;
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 14px; letter-spacing: 0.1em;
+  color: var(--ink);
+  background: var(--surface); backdrop-filter: blur(8px);
+  padding: 8px 16px; border-radius: 999px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(8,18,31,0.05);
+}
+
+/* HUD: Controls */
+#controls {
+  position: fixed; bottom: 32px; right: 40px; z-index: 100;
+  display: flex; gap: 8px;
+}
+.ctrl-btn {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface); backdrop-filter: blur(8px);
+  color: var(--ink); cursor: pointer;
+  display: grid; place-items: center; font-size: 20px;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  background: var(--gold); color: white; border-color: var(--gold);
+}
+
+/* Slides Framework */
+#slides-wrapper { position: fixed; inset: 0; width: 100%; height: 100%; }
+.slide {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  display: flex; align-items: stretch; overflow: hidden;
+  opacity: 0; pointer-events: none;
+  transform: translateX(60px);
+  transition: opacity var(--dur-slow) var(--ease-expo), transform var(--dur-slow) var(--ease-expo);
+}
+.slide.is-active {
+  opacity: 1; pointer-events: auto; transform: translateX(0); z-index: 10;
+}
+.slide.is-leaving {
+  opacity: 0; transform: translateX(-60px); z-index: 5;
+}
+
+/* Slide Inner & Header */
+.slide__inner {
+  position: relative; z-index: 2; width: 100%; max-width: 1200px;
+  margin: 0 auto; padding: 100px 40px 60px;
+  display: flex; flex-direction: column;
+}
+.slide__inner--cover { justify-content: center; padding-top: 0; }
+.slide__header { display: flex; justify-content: space-between; align-items: flex-start; }
+.h1-title { font-family: var(--font-heading); font-size: 5rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
+.h2-title { font-family: var(--font-heading); font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1.1; letter-spacing: -0.02em; }
+.h2-title span { font-weight: 700; }
+.header-logo { height: 24px; opacity: 0.6; }
+
+/* Backgrounds & Mesh */
+.slide__bg { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
+.mesh-blob {
+  position: absolute; width: 800px; height: 800px; border-radius: 50%;
+  filter: blur(120px); opacity: 0.5; animation: floatY 10s ease-in-out infinite alternate;
+}
+.b-gold-1 { background: radial-gradient(circle, var(--gold-bright), transparent 70%); top: -20%; right: -10%; }
+.b-gold-2 { background: radial-gradient(circle, var(--gold), transparent 70%); bottom: -30%; left: -10%; }
+.b-blue-1 { background: radial-gradient(circle, var(--prussian), transparent 70%); top: 20%; left: -20%; opacity: 0.15; }
+.b-blue-2 { background: radial-gradient(circle, var(--prussian), transparent 70%); top: -20%; right: 40%; opacity: 0.1; }
+
+.bg-corporate { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.8; mix-blend-mode: multiply; }
+.bg-overlay { position: absolute; inset: 0; background: linear-gradient(120deg, rgba(252,249,249,0.95) 30%, rgba(252,249,249,0.6) 100%); }
+
+/* Animations */
+[data-anim="fade-up"] { opacity: 0; transform: translateY(30px); transition: all var(--dur-slow) var(--ease-expo); }
+[data-anim="fade-right"] { opacity: 0; transform: translateX(-30px); transition: all var(--dur-slow) var(--ease-expo); }
+[data-anim="fade-left"] { opacity: 0; transform: translateX(30px); transition: all var(--dur-slow) var(--ease-expo); }
+.slide.is-active [data-anim] { opacity: 1; transform: translate(0); transition-delay: var(--anim-delay, 0ms); }
+@keyframes floatY { 0% { transform: translateY(0); } 100% { transform: translateY(-40px); } }
+
+/* ============================================================
+   SLIDES CONTENT
+   ============================================================ */
+
+/* Slide 1: Cover */
+.cover-logo { height: 60px; filter: drop-shadow(0 4px 12px rgba(201,177,128,0.3)); }
+.subtitle { font-size: 1.5rem; color: var(--prussian); max-width: 600px; font-weight: 300; }
+
+/* Slide 2: Clients */
+.clients-grid {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+}
+.client-logo {
+  flex: 0 0 185px; height: 110px;
+  background: var(--white-pure); border: 1px solid var(--border);
+  border-radius: var(--r-md); display: flex; align-items: center; justify-content: center;
+  padding: 14px; box-shadow: var(--shadow-lg); transition: transform 0.3s, box-shadow 0.3s;
+}
+.client-logo:hover { transform: translateY(-4px); box-shadow: 0 24px 48px rgba(8,18,31,0.12); border-color: var(--gold); }
+.client-logo img {
+  max-width: 100%; max-height: 78px;
+  object-fit: contain; display: block;
+  filter: grayscale(15%); transition: filter 0.3s;
+}
+.client-logo:hover img { filter: grayscale(0%); }
+.client-logo span {
+  font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem;
+  color: var(--prussian); text-align: center; opacity: 0.7;
+}
+
+/* Slide 3: Services — compact to avoid overflow */
+.services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.services-text p { font-size: 1rem; color: var(--ink); }
+.decor-bar { height: 8px; width: 80px; background: var(--prussian); border-radius: 4px; }
+.services-list { display: flex; flex-direction: column; gap: 10px; }
+.service-item {
+  display: flex; gap: 16px; background: var(--white-pure); padding: 14px 20px;
+  border-radius: var(--r-md); border: 1px solid var(--border); box-shadow: var(--shadow-lg);
+  align-items: center;
+}
+.service-icon {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--gold-10);
+  color: var(--gold); display: grid; place-items: center; font-size: 20px; flex-shrink: 0;
+}
+.service-info h3 { font-family: var(--font-heading); font-size: 1rem; color: var(--prussian); margin-bottom: 2px; }
+.service-info p { font-size: 0.8rem; color: var(--ink-40); line-height: 1.3; }
+
+/* Slide 4: Benefits */
+.benefits-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.benefits-text p { font-size: 1.125rem; }
+.benefits-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.benefits-bullets li { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.benefits-cards { display: flex; flex-direction: column; gap: 32px; }
+.benefit-card { background: var(--prussian); color: white; padding: 32px; border-radius: var(--r-md); position: relative; }
+.card-pill { position: absolute; top: -16px; left: 32px; background: var(--gold); color: var(--ink); font-family: var(--font-heading); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; letter-spacing: 0.05em; }
+.benefit-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
+.benefit-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; }
+.benefit-card li i { margin-top: 2px; font-size: 1.1rem; }
+
+/* Slide 5: DB */
+.db-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+.db-text p { font-size: 1.125rem; }
+/* Replace big-number with compact stats row */
+.db-stats { display: flex; gap: 24px; margin-top: 1.5rem; }
+.db-stat { display: flex; flex-direction: column; }
+.db-stat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+.db-stat-label { font-size: 0.8rem; font-weight: 500; color: var(--prussian); margin-top: 2px; }
+.db-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: start; }
+.db-tag {
+  background: var(--prussian); color: white; padding: 12px 16px; border-radius: 4px;
+  font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
+  transition: all 0.2s; border-left: 3px solid var(--gold); cursor: default;
+  display: flex; align-items: center; /* uniform height via flex */
+  min-height: 48px;
+}
+.db-tag:hover { transform: translateX(4px); background: var(--ink); }
+
+/* Slide 6: Diferenciais */
+.diff-layout { display: grid; grid-template-rows: repeat(3, auto); gap: 24px; }
+.diff-card { display: flex; align-items: stretch; background: var(--white-pure); border-radius: var(--r-md); border: 1px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; }
+.diff-icon { width: 80px; background: var(--gold-10); color: var(--gold); display: flex; align-items: center; justify-content: center; font-size: 32px; flex-shrink: 0; }
+.diff-content { padding: 24px 32px; flex-grow: 1; display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: center; }
+.diff-content h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--prussian); }
+.diff-content ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.diff-content li { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
+
+/* Slide 7: Metodologia — SVG Donut */
+.method-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+.method-text p { font-size: 1.125rem; }
+.method-chart { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.donut-svg { width: 240px; height: 240px; }
+.donut-legend { display: flex; flex-direction: column; gap: 10px; }
+.donut-item { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
+.donut-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+
+/* Slide 7 (Projeto): Timeline vertical */
+.proj-grid { display: flex; flex-direction: column; gap: 0; position: relative; }
+.proj-card {
+  background: var(--white-pure); border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg); padding: 14px 20px;
+  display: grid; grid-template-columns: 48px 48px 1fr 80px;
+  gap: 12px; align-items: center; position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.proj-card:first-child { border-radius: var(--r-md) var(--r-md) 0 0; }
+.proj-card:last-child  { border-radius: 0 0 var(--r-md) var(--r-md); }
+.proj-card:not(:first-child) { border-top: none; }
+.proj-card:hover { transform: translateX(4px); box-shadow: 0 20px 40px rgba(8,18,31,0.12); }
+/* connector line between cards */
+.proj-card:not(:last-child)::after {
+  content: ''; position: absolute; left: 23px; bottom: -8px;
+  width: 2px; height: 8px; background: var(--gold); z-index: 2;
+}
+.proj-num {
+  font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700;
+  color: var(--gold); line-height: 1; position: static;
+  display: flex; align-items: center; justify-content: center;
+}
+.proj-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--gold-10); color: var(--gold);
+  display: grid; place-items: center; font-size: 20px;
+}
+.proj-info { display: flex; flex-direction: column; gap: 2px; }
+.proj-info h3 { font-family: var(--font-heading); font-size: 0.9rem; color: var(--prussian); }
+.proj-info p  { font-size: 0.75rem; color: var(--ink-40); line-height: 1.4; }
+.proj-days {
+  font-family: var(--font-heading); font-size: 0.7rem; font-weight: 700;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em;
+  border-left: 1px solid var(--border); padding-left: 12px; text-align: center;
+  border-top: none; padding-top: 0; margin-top: 0;
+}
+
+/* Slide 8: DataSalarial */
+.data-cards { display: flex; gap: 24px; justify-content: center; }
+.data-card { background: var(--white-pure); border: 1px solid var(--border); padding: 32px 40px; border-radius: var(--r-md); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 280px; }
+.d-num { font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--prussian); }
+.d-label { font-size: 1rem; font-weight: 500; color: var(--ink-40); margin-top: 8px; }
+
+/* Slide 6: Pie chart — legenda acima */
+.pie-legend-top { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.pie-legend-item { display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; color: var(--prussian); }
+.pie-legend-dot { width: 13px; height: 13px; border-radius: 3px; flex-shrink: 0; }
+
+/* Slide 7: Totalizador do projeto */
+.proj-total {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  background: var(--prussian); color: white; border-radius: var(--r-md);
+  padding: 12px 20px; margin-top: 10px;
+}
+.proj-total-label { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); flex-shrink: 0; }
+.proj-total-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+.proj-total-value { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+.proj-total-note { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+
+/* Slide 10: Nossos Diferenciais */
+.diferenciais-section { margin-top: 2.5rem; }
+.diferenciais-row { display: flex; gap: 0; position: relative; align-items: flex-start; }
+.diferenciais-row::before {
+  content: ''; position: absolute; top: 65px;
+  left: 13%; right: 13%; height: 2px;
+  background: var(--prussian); z-index: 0;
+}
+.diferencial-item { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 12px; }
+.diferencial-icon {
+  width: 130px; height: 130px; border-radius: 50%;
+  background: var(--prussian); display: flex; align-items: center;
+  justify-content: center; font-size: 48px; color: white;
+  position: relative; z-index: 1; flex-shrink: 0;
+}
+.diferencial-icon::after {
+  content: ''; position: absolute; inset: 8px;
+  border-radius: 50%; border: 2px dashed rgba(255,255,255,0.32);
+}
+.diferencial-title { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--prussian); margin-top: 18px; margin-bottom: 8px; line-height: 1.3; }
+.diferencial-desc { font-size: 0.75rem; color: var(--ink-40); line-height: 1.5; }
+
+/* ============================================================
+   OVERFLOW FIXES (100% zoom)
+   ============================================================ */
+
+/* Slide 3: Serviços — People Analytics cortado */
+#slide-3 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+#slide-3 .services-layout { margin-top: 1.5rem; }
+
+/* Slide 4: Benefícios — card "Para seus Colaboradores" sobreposto */
+#slide-4 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+#slide-4 .benefits-layout { margin-top: 1.5rem; gap: 40px; }
+#slide-4 .benefits-cards { gap: 16px; }
+#slide-4 .benefit-card { padding: 20px 24px; }
+#slide-4 .benefit-card ul { gap: 8px; }
+
+/* Slide 5: stats — separação do decor-bar */
+#slide-5 .db-stats { margin-top: 1.5rem; }
+
+/* Slide 7: Projeto — 6 cards verticais, reduzir margem */
+#slide-7 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+#slide-7 .proj-grid { margin-top: 1.5rem; }
+
+/* Slide 9: Diferenciais DS — Descrição de cargo sobreposto */
+#slide-9 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+#slide-9 .diff-layout { margin-top: 1rem; gap: 16px; }
+#slide-9 .diff-content { padding: 16px 24px; gap: 24px; }
+#slide-9 .diff-content h3 { font-size: 1.2rem; }
+#slide-9 .diff-content li { font-size: 0.9rem; }
+

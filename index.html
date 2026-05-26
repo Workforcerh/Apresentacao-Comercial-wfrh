@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apresentação Comercial - Workforce RH</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="noise-layer" aria-hidden="true"></div>
+
+    <div id="progress-bar" role="progressbar">
+      <div id="progress-fill"></div>
+    </div>
+
+    <div id="hud-counter">
+      <span class="curr" id="curr-num">1</span>
+      <span style="color:var(--ink-40)">/</span>
+      <span id="total-num">10</span>
+    </div>
+
+    <nav id="controls">
+      <button class="ctrl-btn" data-dir="-1"><i class="ph ph-caret-left"></i></button>
+      <button class="ctrl-btn" data-dir="1"><i class="ph ph-caret-right"></i></button>
+    </nav>
+
+    <div id="slides-wrapper">
+      
+      <!-- Slide 1: Capa -->
+      <section class="slide is-active" id="slide-1" data-slide="1">
+        <div class="slide__bg">
+          <div class="mesh-blob b-gold-1"></div>
+          <div class="mesh-blob b-blue-1"></div>
+          <img src="/assets/img/bg-corporate.png" alt="" class="bg-corporate" />
+          <div class="bg-overlay"></div>
+        </div>
+        <div class="slide__inner slide__inner--cover">
+          <div class="cover-content" data-anim="fade-up" style="--anim-delay:100ms">
+            <img src="/assets/logo_horizontal.png" alt="WorkForce RH" class="cover-logo" />
+            <p class="subtitle mt-md">Transformando Gestão de Pessoas em Vantagem Competitiva</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 2: Clientes -->
+      <section class="slide" id="slide-2" data-slide="2">
+        <div class="slide__bg">
+          <div class="mesh-blob b-gold-2"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">ALGUNS DE<br/><span class="text-ink">NOSSOS CLIENTES</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+          <div class="clients-grid mt-lg" data-anim="fade-up" style="--anim-delay:200ms">
+            <div class="client-logo"><img src="/assets/img/clients/startse.png"    alt="StartSe" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/axx-care.png"  alt="axx care" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/idea-zarvos.png" alt="idea! zarvos" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/ints.png"       alt="INTS" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/ipe-digital.png" alt="ipe.digital" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/sertran.png"   alt="SERTRAN" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/engsearch.png" alt="EngSearch" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/delta.png"     alt="DELTA" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/sesi-senai.png" alt="SESI SENAI" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/rodonaves.png" alt="RODONAVES" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/gibran.png"    alt="Colégio Gibran" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/iveco.png"     alt="IVECO" /></div>
+            <div class="client-logo"><img src="/assets/img/clients/systra.png"    alt="SYSTRA" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 3: Serviços -->
+      <section class="slide" id="slide-3" data-slide="3">
+        <div class="slide__bg">
+          <div class="mesh-blob b-blue-2"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">NOSSOS<br/><span class="text-ink">SERVIÇOS</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+          
+          <div class="services-layout mt-lg">
+            <div class="services-text" data-anim="fade-right" style="--anim-delay:200ms">
+              <p>O crescimento sustentável de qualquer empresa está diretamente ligado à qualidade da sua gestão de pessoas. Para engajar talentos, reter os melhores profissionais e manter competitividade no mercado, é fundamental ter estruturas sólidas e transparentes <strong>alinhadas às necessidades estratégicas</strong> e ao momento do negócio.</p>
+              <br/>
+              <p>Investir em práticas estruturadas de cargos, salários e indicadores de RH não é apenas uma necessidade - <strong>é uma vantagem competitiva</strong> que permite decisões estratégicas baseadas em dados concretos e perfeitamente sincronizadas com os indicadores estratégicos da organização.</p>
+              <div class="decor-bar mt-md"></div>
+            </div>
+            
+            <div class="services-list" data-anim="fade-left" style="--anim-delay:400ms">
+              <div class="service-item">
+                <div class="service-icon"><i class="ph-bold ph-hand-coins"></i></div>
+                <div class="service-info">
+                  <h3>Cargos e Salários</h3>
+                  <p>Estruturação completa de cargos e política salarial baseada em dados de mercado.</p>
+                </div>
+              </div>
+              <div class="service-item">
+                <div class="service-icon"><i class="ph-bold ph-coins"></i></div>
+                <div class="service-info">
+                  <h3>Remuneração Variável</h3>
+                  <p>Sistemas de bonificação e incentivos alinhados aos necessidades do negócio.</p>
+                </div>
+              </div>
+              <div class="service-item">
+                <div class="service-icon"><i class="ph-bold ph-heart"></i></div>
+                <div class="service-info">
+                  <h3>Benefícios</h3>
+                  <p>Pacotes de benefícios competitivos e personalizados para cada segmento.</p>
+                </div>
+              </div>
+              <div class="service-item">
+                <div class="service-icon"><i class="ph-bold ph-tree-structure"></i></div>
+                <div class="service-info">
+                  <h3>Estrutura Organizacional</h3>
+                  <p>Designs inteligentes voltados aos resultados de curto e médio prazo organizacionais.</p>
+                </div>
+              </div>
+              <div class="service-item">
+                <div class="service-icon"><i class="ph-bold ph-chart-line-up"></i></div>
+                <div class="service-info">
+                  <h3>People Analytics</h3>
+                  <p>Indicadores e dashboards inteligentes para tomada de decisão estratégica.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 4: Benefícios -->
+      <section class="slide" id="slide-4" data-slide="4">
+        <div class="slide__bg">
+          <div class="mesh-blob b-gold-1"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">BENEFÍCIOS<br/><span class="text-ink">ESTRATÉGICOS</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+
+          <div class="benefits-layout mt-lg">
+            <div class="benefits-text" data-anim="fade-right" style="--anim-delay:200ms">
+              <p>Uma <strong>gestão estratégica de pessoas gera impactos diretos na performance organizacional.</strong></p>
+              <br/>
+              <p>Quando sua empresa possui:</p>
+              <ul class="benefits-bullets mt-sm mb-sm">
+                <li><i class="ph-fill ph-caret-right text-gold"></i> Estruturas salariais competitivas</li>
+                <li><i class="ph-fill ph-caret-right text-gold"></i> Políticas transparentes de trilha de carreira</li>
+                <li><i class="ph-fill ph-caret-right text-gold"></i> Indicadores precisos de performance</li>
+                <li><i class="ph-fill ph-caret-right text-gold"></i> Processos estruturados de reconhecimento</li>
+              </ul>
+              <p>Os resultados são imediatos: <strong>maior produtividade, menor turnover e decisões mais assertivas.</strong></p>
+              <div class="decor-bar mt-md"></div>
+            </div>
+
+            <div class="benefits-cards" data-anim="fade-left" style="--anim-delay:400ms">
+              <div class="benefit-card">
+                <div class="card-pill">Para sua empresa</div>
+                <ul>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> RH mais estratégico e orientado por dados</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Práticas estruturadas e profissionais</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Decisões baseadas em indicadores reais</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Preparação para crescimento e mudanças</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Maior competitividade no mercado</li>
+                </ul>
+              </div>
+
+              <div class="benefit-card">
+                <div class="card-pill">Para seus Colaboradores</div>
+                <ul>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Oportunidades claras de crescimento</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Desenvolvimento através de liderança capacitada</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Reconhecimento justo e transparente</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Maior segurança na jornada profissional</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Ambiente de trabalho mais engajador</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: Banco de Dados -->
+      <section class="slide" id="slide-5" data-slide="5">
+        <div class="slide__bg">
+          <div class="mesh-blob b-blue-1"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">NOSSO<br/><span class="text-ink">BANCO DE DADOS</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+
+          <div class="db-layout mt-lg">
+            <div class="db-text" data-anim="fade-right" style="--anim-delay:200ms">
+              <p>Possuímos dados de todos os <strong>segmentos estratégicos da economia nacional</strong>, com informações de mais de <strong>2.000 instituições</strong> em todas as regiões do Brasil, oferecendo soluções especializadas e suporte técnico qualificado para análises precisas e decisões bem fundamentadas.</p>
+              <br/>
+              <p>Com expertise consolidada em 14 segmentos, desenvolvemos parcerias sólidas que <strong>impulsionam o crescimento sustentável dos nossos clientes.</strong></p>
+              <div class="decor-bar mt-md"></div>
+              
+              <div class="db-stats mt-lg">
+                <div class="db-stat"><span class="db-stat-num">+2.000</span><span class="db-stat-label">Instituições</span></div>
+                <div class="db-stat"><span class="db-stat-num">+2.500</span><span class="db-stat-label">Cargos analisados</span></div>
+                <div class="db-stat"><span class="db-stat-num">+80</span><span class="db-stat-label">Mercados</span></div>
+              </div>
+            </div>
+
+            <div class="db-grid" data-anim="fade-left" style="--anim-delay:400ms">
+              <div class="db-tag">CONSTRUÇÃO CIVIL E INCORPORAÇÃO</div>
+              <div class="db-tag">BENS DE CONSUMO</div>
+              <div class="db-tag">INDÚSTRIA AUTOMOTIVA</div>
+              <div class="db-tag">PAPEL E CELULOSE</div>
+              <div class="db-tag">EDUCAÇÃO</div>
+              <div class="db-tag">SAÚDE</div>
+              <div class="db-tag">SERVIÇOS</div>
+              <div class="db-tag">COMUNICAÇÃO</div>
+              <div class="db-tag">AGRO INDÚSTRIA</div>
+              <div class="db-tag">TECNOLOGIA</div>
+              <div class="db-tag">TRANSPORTES E LOGÍSTICA</div>
+              <div class="db-tag">EMBALAGENS</div>
+              <div class="db-tag">VAREJO</div>
+              <div class="db-tag">MÁQUINAS E EQUIPAMENTOS</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6: Metodologia -->
+      <section class="slide" id="slide-6" data-slide="6">
+        <div class="slide__bg">
+          <div class="mesh-blob b-blue-2"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">NOSSA<br/><span class="text-ink">METODOLOGIA</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+
+          <div class="method-layout mt-lg">
+            <div class="method-text" data-anim="fade-right" style="--anim-delay:200ms">
+              <p>Nossa consultoria é altamente <strong>capacitada e fundamentada em metodologias consolidadas de mercado</strong>, incluindo:</p>
+              <ul class="benefits-bullets mt-md mb-sm">
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Market Pricing</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Span of Control</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Designs organizacionais</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Total Remuneração</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Job Evaluation</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Benchmarking Salarial</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Análise de Competitividade</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Estruturação de Grades Salariais</li>
+                <li><i class="ph-bold ph-caret-right text-gold"></i> Modelagem de Incentivos Variáveis.</li>
+              </ul>
+              <div class="decor-bar mt-md"></div>
+            </div>
+
+            <div class="method-chart" data-anim="fade-left" style="--anim-delay:400ms">
+              <!-- Pizza grande — legenda como texto dentro de cada fatia -->
+              <!-- Centro (150,165) raio 130, viewBox 300×300 -->
+              <svg viewBox="0 0 300 300" width="100%" style="max-height:300px" xmlns="http://www.w3.org/2000/svg">
+                <!-- Título -->
+                <text x="150" y="18" text-anchor="middle" font-family="Lexend,sans-serif" font-size="12" font-weight="600" fill="#112B4A" letter-spacing="0.07em">REMUNERAÇÃO TOTAL</text>
+
+                <!-- Fatia 1: Salário Fixo 55% — start -90° sweep 198° -->
+                <!-- start:(150,35) end:(109.8,288.6) large-arc:1 -->
+                <path d="M 150 165 L 150 35 A 130 130 0 1 1 109.8 288.6 Z" fill="#112B4A" stroke="white" stroke-width="2"/>
+
+                <!-- Fatia 2: Rem. Variável 30% — start 108° sweep 108° -->
+                <!-- start:(109.8,288.6) end:(44.8,88.6) large-arc:0 -->
+                <path d="M 150 165 L 109.8 288.6 A 130 130 0 0 1 44.8 88.6 Z" fill="#C9B180" stroke="white" stroke-width="2"/>
+
+                <!-- Fatia 3: Benefícios 15% — start 216° sweep 54° -->
+                <!-- start:(44.8,88.6) end:(150,35) large-arc:0 -->
+                <path d="M 150 165 L 44.8 88.6 A 130 130 0 0 1 150 35 Z" fill="#9BA4B5" stroke="white" stroke-width="2"/>
+
+                <!-- Labels dentro das fatias (posição: 65% do raio no ângulo médio) -->
+                <!-- Fatia 1 — mid angle 9° → (233.5, 178.2) -->
+                <text x="234" y="174" text-anchor="middle" font-family="Lexend,sans-serif" font-size="13" font-weight="700"
+                  fill="white" paint-order="stroke fill" stroke="#112B4A" stroke-width="3">Salário</text>
+                <text x="234" y="190" text-anchor="middle" font-family="Lexend,sans-serif" font-size="13" font-weight="700"
+                  fill="white" paint-order="stroke fill" stroke="#112B4A" stroke-width="3">Fixo</text>
+
+                <!-- Fatia 2 — mid angle 162° → (69.6, 191.1) -->
+                <text x="70" y="186" text-anchor="middle" font-family="Lexend,sans-serif" font-size="11" font-weight="700"
+                  fill="#112B4A">Rem.</text>
+                <text x="70" y="200" text-anchor="middle" font-family="Lexend,sans-serif" font-size="11" font-weight="700"
+                  fill="#112B4A">Variável</text>
+
+                <!-- Fatia 3 — mid angle 243° → (111.6, 89.7) -->
+                <text x="112" y="86" text-anchor="middle" font-family="Lexend,sans-serif" font-size="10" font-weight="700"
+                  fill="white" paint-order="stroke fill" stroke="#9BA4B5" stroke-width="2">Benefícios</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 7: Projeto Cargos e Salários -->
+      <section class="slide" id="slide-7" data-slide="7">
+        <div class="slide__bg">
+          <div class="mesh-blob b-gold-1"></div>
+          <div class="mesh-blob b-blue-1"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">PROJETO<br/><span class="text-ink">CARGOS E SALÁRIOS</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+
+          <div class="proj-grid mt-lg" data-anim="fade-up" style="--anim-delay:200ms">
+
+            <div class="proj-card">
+              <div class="proj-num">01</div>
+              <div class="proj-icon"><i class="ph-bold ph-tree-structure"></i></div>
+              <div class="proj-info">
+                <h3>Estrutura de Carreiras</h3>
+                <p>Otimização via <em>span of control</em> e <em>layers</em> com capacitação de gestores.</p>
+              </div>
+              <div class="proj-days">30 dias</div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-num">02</div>
+              <div class="proj-icon"><i class="ph-bold ph-file-text"></i></div>
+              <div class="proj-info">
+                <h3>Descrições de Cargo</h3>
+                <p>Modelos estruturados e capacitação conforme padrões de mercado.</p>
+              </div>
+              <div class="proj-days">30 dias</div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-num">03</div>
+              <div class="proj-icon"><i class="ph-bold ph-magnifying-glass-dollar"></i></div>
+              <div class="proj-info">
+                <h3>Pesquisa Total Remuneração</h3>
+                <p>Pesquisa salarial (fixo, variável e benefícios) com benchmarking por região, setor e faturamento.</p>
+              </div>
+              <div class="proj-days">20 dias</div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-num">04</div>
+              <div class="proj-icon"><i class="ph-bold ph-chart-bar"></i></div>
+              <div class="proj-info">
+                <h3>Cenários de Custo</h3>
+                <p>Múltiplos cenários via Power BI para posicionamento frente ao mercado.</p>
+              </div>
+              <div class="proj-days">10 dias</div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-num">05</div>
+              <div class="proj-icon"><i class="ph-bold ph-table"></i></div>
+              <div class="proj-info">
+                <h3>Estrutura Salarial</h3>
+                <p>Tabelas salariais detalhadas e análise de posicionamento interno.</p>
+              </div>
+              <div class="proj-days">15 dias</div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-num">06</div>
+              <div class="proj-icon"><i class="ph-bold ph-book-open"></i></div>
+              <div class="proj-info">
+                <h3>Política de Remuneração</h3>
+                <p>Regras do jogo e diretrizes para gestão futura de pessoas.</p>
+              </div>
+              <div class="proj-days">15 dias</div>
+            </div>
+
+          </div>
+
+          <div class="proj-total" data-anim="fade-up" style="--anim-delay:400ms">
+            <span class="proj-total-label">Total do Projeto</span>
+            <span class="proj-total-sep"></span>
+            <span class="proj-total-value">~4 meses</span>
+            <span class="proj-total-sep"></span>
+            <span class="proj-total-note">para empresas com 25 a 150 cargos (média geral)</span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Slide 8: DataSalarial -->
+      <section class="slide" id="slide-8" data-slide="8">
+        <div class="slide__bg">
+          <div class="mesh-blob b-blue-1"></div>
+          <div class="mesh-blob b-gold-2"></div>
+        </div>
+        <div class="slide__inner slide__inner--center text-center">
+          <div class="data-content" data-anim="fade-up" style="--anim-delay:100ms">
+            <img src="/assets/img/logo-datasalarial-color.png" alt="DataSalarial" style="height: 80px; margin-bottom: 1rem;" />
+            <h3 class="h2-title text-prussian" style="font-size:2rem;margin-top:16px;">A solução definitiva para decisões baseadas em dados</h3>
+            
+            <p class="subtitle mt-md" style="margin: 1.5rem auto; font-size:1.125rem; max-width: 800px; color: var(--ink);">O levantamento mais completo e confiável do mercado de remuneração, impulsionado por <strong class="text-prussian">Machine Learning</strong> e <strong class="text-prussian">análise estatística avançada</strong>. Tenha granularidade sem precedentes para guiar a estratégia da sua empresa.</p>
+            
+            <div class="data-cards mt-lg">
+              <div class="data-card">
+                <span class="d-num">+2.500</span>
+                <span class="d-label">cargos em nossa base</span>
+              </div>
+              <div class="data-card">
+                <span class="d-num">+2.000</span>
+                <span class="d-label">empresas no banco de dados</span>
+              </div>
+              <div class="data-card">
+                <span class="d-num">+80</span>
+                <span class="d-label">Mercados (região e segmento)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: Diferenciais DataSalarial -->
+      <section class="slide" id="slide-9" data-slide="9">
+        <div class="slide__bg">
+          <div class="mesh-blob b-gold-2"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <img src="/assets/img/logo-datasalarial-color.png" alt="DataSalarial" style="height:36px;"/>
+              <h2 class="h2-title" style="margin:0;">Diferenciais da<br/><span class="text-ink">plataforma</span></h2>
+            </div>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+          <p class="subtitle mt-md" data-anim="fade-up" style="--anim-delay:200ms">Você não recebe apenas valores salariais, mas um panorama completo para tomar decisões estratégicas.</p>
+          
+          <div class="diff-layout mt-lg" data-anim="fade-up" style="--anim-delay:300ms">
+            <div class="diff-card">
+              <div class="diff-icon"><i class="ph-bold ph-chart-bar"></i></div>
+              <div class="diff-content">
+                <h3>Análise Completa</h3>
+                <ul>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Salário base por percentis.</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Remuneração Variável.</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Pacote de Benefícios.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="diff-card">
+              <div class="diff-icon"><i class="ph-bold ph-funnel"></i></div>
+              <div class="diff-content">
+                <h3>Segmentação Detalhada</h3>
+                <ul>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Por porte de empresa</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Por setor de atuação</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Por localização geográfica</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="diff-card">
+              <div class="diff-icon"><i class="ph-bold ph-file-text"></i></div>
+              <div class="diff-content">
+                <h3>Descrição de cargo completa</h3>
+                <ul>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Descrição sumária de cada cargo</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Formação Acadêmica e Tempo de experiência.</li>
+                  <li><i class="ph-fill ph-check-circle text-gold"></i> Habilidades técnicas necessárias.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 10: Nossos Diferenciais -->
+      <section class="slide" id="slide-10" data-slide="10">
+        <div class="slide__bg">
+          <div class="mesh-blob b-gold-1"></div>
+        </div>
+        <div class="slide__inner">
+          <header class="slide__header" data-anim="fade-up">
+            <h2 class="h2-title">NOSSOS<br/><span class="text-ink">DIFERENCIAIS</span></h2>
+            <img src="/assets/logo_horizontal.png" alt="WF" class="header-logo" />
+          </header>
+
+          <div class="diferenciais-section" data-anim="fade-up" style="--anim-delay:200ms">
+            <div class="diferenciais-row">
+
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="ph-bold ph-hand-coins"></i></div>
+                <h3 class="diferencial-title">Preços competitivos</h3>
+                <p class="diferencial-desc">Oferecemos consultoria especializada em RH com <strong>alta qualidade</strong> e <strong>excelente custo-benefício</strong>, acessível para empresas de todos os tamanhos.</p>
+              </div>
+
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="ph-bold ph-handshake"></i></div>
+                <h3 class="diferencial-title">Atendimento customizado</h3>
+                <p class="diferencial-desc">Desenvolvemos <strong>soluções personalizadas</strong> em RH, <strong>alinhadas</strong> ao segmento, porte, cultura organizacional e <strong>objetivos</strong> estratégicos de cada cliente.</p>
+              </div>
+
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="ph-bold ph-database"></i></div>
+                <h3 class="diferencial-title">Amplo banco de dados</h3>
+                <p class="diferencial-desc">Contamos com um <strong>amplo banco de dados</strong> com informações de <strong>mais de 2k instituições</strong> em <strong>todas as regiões do Brasil</strong>, para análises precisas e decisões bem fundamentadas.</p>
+              </div>
+
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="ph-bold ph-medal"></i></div>
+                <h3 class="diferencial-title">Especialistas em cargos e salários</h3>
+                <p class="diferencial-desc">Nossa equipe é composta por <strong>consultores experientes</strong> em estruturação de cargos e salários, <strong>assegurando soluções técnicas de alta qualidade</strong> e alinhadas às melhores práticas do mercado.</p>
+              </div>
+
+              <div class="diferencial-item">
+                <div class="diferencial-icon"><i class="ph-bold ph-clock"></i></div>
+                <h3 class="diferencial-title">Entrega em apenas 4 meses</h3>
+                <p class="diferencial-desc">Nosso <strong>processo ágil</strong> permite a entrega de um <strong>projeto completo em apenas 4 meses</strong>, garantindo resultados rápidos com o <strong>mínimo impacto nas operações</strong> do dia a dia da sua empresa.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
