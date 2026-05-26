@@ -141,24 +141,9 @@ html, body {
 .slide.is-active [data-anim] { opacity: 1; transform: translate(0); transition-delay: var(--anim-delay, 0ms); }
 @keyframes floatY { 0% { transform: translateY(0); } 100% { transform: translateY(-40px); } }
 
-/* Fullscreen — garante preenchimento total e suprime flash de transição */
+/* Suprime flash de transição ao entrar/sair do fullscreen */
 .no-transition,
 .no-transition * { transition: none !important; }
-
-:fullscreen #slides-wrapper,
-:-webkit-full-screen #slides-wrapper {
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-}
-:fullscreen .slide,
-:-webkit-full-screen .slide {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-}
 
 /* ============================================================
    SLIDES CONTENT
@@ -186,8 +171,8 @@ html, body {
 }
 .client-logo:hover img { filter: grayscale(0%); }
 /* SESI SENAI — logo quadrado, precisa de mais espaço */
-.client-logo:has(img[alt="SESI SENAI"]) { padding: 8px; }
-.client-logo img[alt="SESI SENAI"] { max-height: 94px; max-width: 94px; }
+.client-logo:has(img[alt="SESI SENAI"]) { padding: 4px; }
+.client-logo img[alt="SESI SENAI"] { max-height: 102px; max-width: 102px; }
 .client-logo span {
   font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem;
   color: var(--prussian); text-align: center; opacity: 0.7;
