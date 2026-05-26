@@ -81,6 +81,21 @@ document.addEventListener('DOMContentLoaded', () => {
     fsIcon.className = isFs ? 'ph ph-arrows-in' : 'ph ph-arrows-out';
   }
 
+  function reactivateSlide() {
+    // Suppress all transitions while snapping the active slide back into view
+    document.body.classList.add('no-transition');
+    slides.forEach(s => {
+      s.style.transform = '';
+      s.style.opacity = '';
+      s.classList.remove('is-active', 'is-leaving');
+    });
+    slides[currentIdx].classList.add('is-active');
+    // Re-enable transitions after two frames so the snap is invisible
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      document.body.classList.remove('no-transition');
+    }));
+  }
+
   if (fsBtn) {
     fsBtn.addEventListener('click', () => {
       if (!document.fullscreenElement) {
@@ -89,7 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.exitFullscreen().catch(() => {});
       }
     });
-    document.addEventListener('fullscreenchange', updateFsIcon);
+    document.addEventListener('fullscreenchange', () => {
+      updateFsIcon();
+      reactivateSlide();
+    });
   }
 
   // Initial HUD setup
