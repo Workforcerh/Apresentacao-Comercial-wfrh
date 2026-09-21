@@ -531,7 +531,7 @@ html:fullscreen, html:-webkit-full-screen { background: var(--offwhite); }
   box-shadow: 0 16px 48px rgba(8,18,31,0.15), 0 4px 12px rgba(8,18,31,0.08);
 }
 .ds-showcase-img img {
-  width: 100%; max-height: 540px; object-fit: contain; border-radius: 12px;
+  width: 100%; max-height: 620px; object-fit: contain; border-radius: 12px;
 }
 .ds-showcase-brand {
   position: absolute; top: 24px; left: 32px; height: 40px; z-index: 2;
