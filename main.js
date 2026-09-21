@@ -80,26 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const BASE_H = 720;
 
   function applyFullscreenScale() {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const scale = Math.min(vw / BASE_W, vh / BASE_H);
-    const offsetX = Math.round((vw - BASE_W * scale) / 2);
-    const offsetY = Math.round((vh - BASE_H * scale) / 2);
-    Object.assign(WRAPPER.style, {
-      top:             offsetY + 'px',
-      left:            offsetX + 'px',
-      right:           'auto',
-      bottom:          'auto',
-      width:           BASE_W + 'px',
-      height:          BASE_H + 'px',
-      transform:       `scale(${scale})`,
-      transformOrigin: 'top left',
-    });
+    document.documentElement.classList.add('is-fullscreen');
   }
 
   function resetScale() {
-    ['top','left','right','bottom','width','height','transform','transformOrigin']
-      .forEach(p => { WRAPPER.style[p] = ''; });
+    document.documentElement.classList.remove('is-fullscreen');
   }
 
   function reactivateSlide() {
@@ -117,13 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const fsBtn  = document.getElementById('fullscreen-btn');
-  const fsIcon = fsBtn ? fsBtn.querySelector('i') : null;
+  const fsIcon = document.getElementById('fs-icon');
 
   function updateFsIcon() {
     if (!fsIcon) return;
-    fsIcon.className = document.fullscreenElement
-      ? 'ph ph-arrows-in'
-      : 'ph ph-arrows-out';
+    fsIcon.textContent = document.fullscreenElement
+      ? 'close_fullscreen'
+      : 'open_in_full';
   }
 
   if (fsBtn) {
@@ -153,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initial HUD setup
   updateHUD();
-  
+
   // Set initial animation delays just in case
   slides.forEach(slide => {
     const animatedElements = slide.querySelectorAll('[data-anim]');
@@ -163,4 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ── PDF Download (via print) ──────────────────────────────────
+  const pdfBtn = document.getElementById('download-pdf-btn');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
 });
