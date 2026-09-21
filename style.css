@@ -43,6 +43,18 @@ html, body {
   font-family: var(--font-body);
   line-height: 1.5;
 }
+html:fullscreen, html:-webkit-full-screen { background: var(--offwhite); }
+.is-fullscreen #slides-wrapper { position: fixed; inset: 0; width: 100%; height: 100%; }
+.is-fullscreen #controls {
+  bottom: 12px; right: 16px; opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+.is-fullscreen #controls:hover { opacity: 1; }
+.is-fullscreen #hud-counter {
+  top: 12px; right: 16px; opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+.is-fullscreen #hud-counter:hover { opacity: 1; }
 .text-gold { color: var(--gold); }
 .text-ink { color: var(--ink); }
 .mt-sm { margin-top: var(--sp-sm); }
@@ -87,7 +99,7 @@ html, body {
   transition: all 0.2s;
 }
 .ctrl-btn:hover {
-  background: var(--gold); color: white; border-color: var(--gold);
+  background: var(--gold); color: var(--offwhite); border-color: var(--gold);
 }
 #fullscreen-btn { margin-left: 8px; }
 
@@ -116,9 +128,9 @@ html, body {
 .slide__inner--cover { justify-content: center; padding-top: 0; }
 .slide__header { display: flex; justify-content: space-between; align-items: flex-start; }
 .h1-title { font-family: var(--font-heading); font-size: 5rem; font-weight: 700; line-height: 1; letter-spacing: -0.03em; }
-.h2-title { font-family: var(--font-heading); font-size: 3rem; font-weight: 300; color: var(--gold); line-height: 1.1; letter-spacing: -0.02em; }
+.h2-title { font-family: var(--font-heading); font-size: 3rem; font-weight: 400; color: var(--gold); line-height: 1.1; letter-spacing: -0.02em; }
 .h2-title span { font-weight: 700; }
-.header-logo { height: 24px; opacity: 0.6; }
+.header-logo { height: 24px; opacity: 0.6; filter: drop-shadow(0 2px 8px rgba(201,177,128,0.25)); }
 
 /* Backgrounds & Mesh */
 .slide__bg { position: absolute; inset: 0; z-index: 1; overflow: hidden; }
@@ -149,9 +161,86 @@ html, body {
    SLIDES CONTENT
    ============================================================ */
 
-/* Slide 1: Cover */
-.cover-logo { height: 60px; filter: drop-shadow(0 4px 12px rgba(201,177,128,0.3)); }
-.subtitle { font-size: 1.5rem; color: var(--prussian); max-width: 600px; font-weight: 300; }
+/* Material Symbols sizing */
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+.service-icon .material-symbols-outlined,
+.proj-icon .material-symbols-outlined,
+.diff-icon .material-symbols-outlined { font-size: inherit; }
+.diferencial-icon .material-symbols-outlined { font-size: inherit; }
+.benefits-bullets .material-symbols-outlined,
+.benefit-card .material-symbols-outlined,
+.diff-content .material-symbols-outlined { font-size: 1.1rem; font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+/* Gradient backgrounds */
+.slide__bg--gradient-ink-prussian {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--prussian) 100%);
+  opacity: 0.06;
+}
+
+/* Slide 1: Cover — new organic layout */
+.slide__inner--cover-new {
+  display: grid; grid-template-columns: 1fr 1fr;
+  height: 100%; padding: 0; gap: 0; align-items: stretch;
+}
+.cover-left {
+  position: relative; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  padding: 60px 40px 60px 80px; z-index: 1;
+}
+.cover-logo-hz { height: 56px; width: auto; object-fit: contain; align-self: flex-start; }
+.cover-gold-line {
+  width: 320px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-dim));
+  margin-top: 28px; position: relative;
+}
+.cover-gold-dot {
+  position: absolute; right: -6px; top: -5px;
+  width: 12px; height: 12px; border-radius: 50%; background: var(--gold);
+}
+.cover-subtitle {
+  font-family: var(--font-heading); font-size: 1.45rem; font-weight: 600;
+  color: var(--ink); line-height: 1.4; margin-top: 28px; max-width: 420px;
+}
+/* Dot grid decorations */
+.cover-dots-tl, .cover-dots-tr {
+  position: absolute;
+  width: 60px; height: 60px;
+  background-image: radial-gradient(circle, var(--gold) 2px, transparent 2px);
+  background-size: 14px 14px; opacity: 0.5;
+}
+.cover-dots-tl { top: 32px; left: 40px; }
+.cover-dots-tr { top: 28px; right: 28px; }
+/* Right side — organic shapes */
+.cover-right {
+  position: relative; overflow: hidden;
+}
+.cover-shape {
+  position: absolute; overflow: hidden;
+}
+.cover-shape img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.cover-shape--arch-top {
+  top: 0; right: 0; width: 72%; height: 58%;
+  border-radius: 0 0 0 50%;
+}
+.cover-shape--arch-bottom {
+  bottom: 0; right: 80px; width: 50%; height: 48%;
+  border-radius: 50% 50% 0 0;
+}
+.cover-shape--circle {
+  top: 48%; right: 0; width: 140px; height: 140px;
+  border-radius: 50%; transform: translateY(-50%);
+}
+.cover-circle-fill {
+  width: 100%; height: 100%; border-radius: 50%;
+  background: var(--prussian); opacity: 0.25;
+}
+.cover-arc {
+  position: absolute; border: 1.5px solid var(--gold); border-radius: 50%;
+  opacity: 0.3;
+}
+.cover-arc--1 { width: 300px; height: 300px; bottom: -40px; right: -60px; }
+.cover-arc--2 { width: 200px; height: 200px; top: 40%; left: -20px; }
 
 /* Slide 2: Clients */
 .clients-grid {
@@ -173,12 +262,28 @@ html, body {
 /* SESI SENAI — logo quadrado, precisa de mais espaço */
 .client-logo:has(img[alt="SESI SENAI"]) { padding: 4px; }
 .client-logo img[alt="SESI SENAI"] { max-height: 102px; max-width: 102px; }
+/* Última linha — ampliar para melhor visibilidade */
+.client-logo img[alt="DELTA"],
+.client-logo img[alt="Biblioteca Católica"],
+.client-logo img[alt="Le Creuset"],
+.client-logo img[alt="Swarovski"],
+.client-logo img[alt="Hugo Boss"] { max-height: 100px; max-width: 160px; transform: scale(1.3); }
 .client-logo span {
   font-family: var(--font-heading); font-weight: 600; font-size: 0.8rem;
   color: var(--prussian); text-align: center; opacity: 0.7;
 }
 
-/* Slide 3: Services — compact to avoid overflow */
+/* Slide 3: Clientes — 4 rows × 5 columns */
+#slide-3 .slide__inner { padding-top: 64px; padding-bottom: 24px; }
+#slide-3 .clients-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  margin-top: 1.5rem; gap: 14px;
+}
+#slide-3 .client-logo { height: 90px; flex: none; padding: 10px; }
+#slide-3 .client-logo img { max-height: 66px; }
+#slide-3 .client-logo img[alt="SESI SENAI"] { max-height: 82px; max-width: 82px; }
+
+/* Slide 2: Services */
 .services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .services-text p { font-size: 1rem; color: var(--ink); }
 .decor-bar { height: 8px; width: 80px; background: var(--prussian); border-radius: 4px; }
@@ -201,7 +306,7 @@ html, body {
 .benefits-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .benefits-bullets li { display: flex; align-items: center; gap: 8px; font-weight: 500; }
 .benefits-cards { display: flex; flex-direction: column; gap: 32px; }
-.benefit-card { background: var(--prussian); color: white; padding: 32px; border-radius: var(--r-md); position: relative; }
+.benefit-card { background: var(--prussian); color: var(--offwhite); padding: 32px; border-radius: var(--r-md); position: relative; }
 .card-pill { position: absolute; top: -16px; left: 32px; background: var(--gold); color: var(--ink); font-family: var(--font-heading); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; padding: 6px 16px; border-radius: 999px; letter-spacing: 0.05em; }
 .benefit-card ul { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 .benefit-card li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; }
@@ -217,7 +322,7 @@ html, body {
 .db-stat-label { font-size: 0.8rem; font-weight: 500; color: var(--prussian); margin-top: 2px; }
 .db-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-content: start; }
 .db-tag {
-  background: var(--prussian); color: white; padding: 12px 16px; border-radius: 4px;
+  background: var(--prussian); color: var(--offwhite); padding: 12px 16px; border-radius: 4px;
   font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em;
   transition: all 0.2s; border-left: 3px solid var(--gold); cursor: default;
   display: flex; align-items: center; /* uniform height via flex */
@@ -234,10 +339,15 @@ html, body {
 .diff-content ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .diff-content li { display: flex; align-items: center; gap: 12px; font-size: 1rem; }
 
-/* Slide 7: Metodologia — SVG Donut */
-.method-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-.method-text p { font-size: 1.125rem; }
+/* Slide 6: Metodologia */
+#slide-6 .slide__inner { padding-top: 72px; padding-bottom: 24px; }
+.method-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.method-text p { font-size: 1rem; }
 .method-chart { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.method-concept-title {
+  font-family: var(--font-heading); font-size: 1.1rem; color: var(--prussian);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
 .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 .donut-svg { width: 240px; height: 240px; }
 .donut-legend { display: flex; flex-direction: column; gap: 10px; }
@@ -283,6 +393,28 @@ html, body {
 }
 
 /* Slide 8: DataSalarial */
+/* Slide 8: DataSalarial — split layout */
+#slide-8 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+.ds-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
+.ds-left { display: flex; flex-direction: column; }
+.ds-logo { height: 60px; align-self: flex-start; }
+.ds-cards-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.ds-cards-stack .data-card {
+  flex-direction: row; align-items: center; gap: 16px;
+  padding: 14px 20px; min-width: auto; text-align: left;
+}
+.ds-cards-stack .d-num { font-size: 1.8rem; }
+.ds-cards-stack .d-label { margin-top: 0; font-size: 0.9rem; }
+.ds-right { position: relative; display: flex; align-items: center; justify-content: center; }
+.ds-screenshot-float {
+  border-radius: 12px; overflow: hidden;
+  box-shadow: 0 24px 60px rgba(8,18,31,0.18), 0 8px 20px rgba(8,18,31,0.10);
+  transform: perspective(800px) rotateY(-3deg);
+  transition: transform 0.4s var(--ease-expo);
+}
+.ds-screenshot-float:hover { transform: perspective(800px) rotateY(0deg); }
+.ds-screenshot { width: 100%; max-width: 500px; max-height: 520px; height: auto; display: block; border-radius: 12px; object-fit: contain; }
+
 .data-cards { display: flex; gap: 24px; justify-content: center; }
 .data-card { background: var(--white-pure); border: 1px solid var(--border); padding: 32px 40px; border-radius: var(--r-md); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 280px; }
 .d-num { font-family: var(--font-heading); font-size: 3rem; font-weight: 700; color: var(--prussian); }
@@ -296,13 +428,13 @@ html, body {
 /* Slide 7: Totalizador do projeto */
 .proj-total {
   display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-  background: var(--prussian); color: white; border-radius: var(--r-md);
+  background: var(--prussian); color: var(--offwhite); border-radius: var(--r-md);
   padding: 12px 20px; margin-top: 10px;
 }
 .proj-total-label { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); flex-shrink: 0; }
-.proj-total-sep { width: 1px; height: 22px; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+.proj-total-sep { width: 1px; height: 22px; background: rgba(252,249,249,0.2); flex-shrink: 0; }
 .proj-total-value { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
-.proj-total-note { font-size: 0.78rem; color: rgba(255,255,255,0.65); }
+.proj-total-note { font-size: 0.78rem; color: rgba(252,249,249,0.65); }
 
 /* Slide 10: Nossos Diferenciais */
 .diferenciais-section { margin-top: 2.5rem; }
@@ -316,12 +448,12 @@ html, body {
 .diferencial-icon {
   width: 130px; height: 130px; border-radius: 50%;
   background: var(--prussian); display: flex; align-items: center;
-  justify-content: center; font-size: 48px; color: white;
+  justify-content: center; font-size: 48px; color: var(--offwhite);
   position: relative; z-index: 1; flex-shrink: 0;
 }
 .diferencial-icon::after {
   content: ''; position: absolute; inset: 8px;
-  border-radius: 50%; border: 2px dashed rgba(255,255,255,0.32);
+  border-radius: 50%; border: 2px dashed rgba(252,249,249,0.32);
 }
 .diferencial-title { font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; color: var(--prussian); margin-top: 18px; margin-bottom: 8px; line-height: 1.3; }
 .diferencial-desc { font-size: 0.75rem; color: var(--ink-40); line-height: 1.5; }
@@ -349,9 +481,141 @@ html, body {
 #slide-7 .proj-grid { margin-top: 1.5rem; }
 
 /* Slide 9: Diferenciais DS — Descrição de cargo sobreposto */
-#slide-9 .slide__inner { padding-top: 72px; padding-bottom: 32px; }
-#slide-9 .diff-layout { margin-top: 1rem; gap: 16px; }
-#slide-9 .diff-content { padding: 16px 24px; gap: 24px; }
+#slide-9 .slide__inner { padding-top: 64px; padding-bottom: 24px; }
+#slide-9 .diff-layout { margin-top: 0.75rem; gap: 12px; }
+#slide-9 .diff-content { padding: 14px 24px; gap: 20px; }
 #slide-9 .diff-content h3 { font-size: 1.2rem; }
 #slide-9 .diff-content li { font-size: 0.9rem; }
+
+/* ============================================================
+   CRONOGRAMA & INVESTIMENTO (propostas)
+   ============================================================ */
+.crono-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
+.crono-table { display: flex; flex-direction: column; gap: 0; }
+.crono-header {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px;
+  padding: 10px 16px; font-family: var(--font-heading); font-size: 0.75rem;
+  font-weight: 600; letter-spacing: 0.08em; color: var(--gold); text-transform: uppercase;
+  border-bottom: 2px solid var(--gold);
+}
+.crono-row {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px;
+  padding: 10px 16px; font-size: 0.9rem; border-bottom: 1px solid var(--ink-10);
+}
+.crono-row--highlight { background: var(--gold-10); font-weight: 600; }
+.crono-table--4col .crono-header,
+.crono-table--4col .crono-row { grid-template-columns: 2fr 1fr 1fr 1fr; }
+.crono-invest { display: flex; align-items: center; justify-content: center; }
+.crono-invest-card {
+  background: var(--prussian); color: var(--offwhite); border-radius: var(--r-md);
+  padding: 32px 40px; text-align: center; box-shadow: var(--shadow-lg);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.crono-invest-label { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 500; opacity: 0.8; letter-spacing: 0.05em; }
+.crono-invest-value { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 700; color: var(--gold-bright); }
+.crono-invest-detail { font-size: 1rem; opacity: 0.9; }
+#slide-crono .slide__inner { padding-top: 72px; padding-bottom: 24px; }
+
+/* DataSalarial Showcase Slides */
+.ds-showcase-inner {
+  padding: 40px 48px 32px !important; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; position: relative;
+}
+.ds-showcase-title {
+  font-family: var(--font-heading); font-size: 2rem; font-weight: 700;
+  color: var(--ink); text-align: center; margin-bottom: 20px;
+}
+.ds-showcase-img {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  width: 100%; overflow: hidden; border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(8,18,31,0.15), 0 4px 12px rgba(8,18,31,0.08);
+}
+.ds-showcase-img img {
+  width: 100%; max-height: 540px; object-fit: contain; border-radius: 12px;
+}
+.ds-showcase-brand {
+  position: absolute; top: 24px; left: 32px; height: 40px; z-index: 2;
+}
+
+/* Slide: Plano de Cargos e Salários */
+#slide-plano-cs .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+.plano-cs-layout {
+  display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: start; flex: 1;
+}
+.plano-cs-left { color: var(--ink); }
+.plano-cs-intro { font-size: 1rem; line-height: 1.7; opacity: 0.85; }
+.plano-cs-topics {
+  margin-top: 16px; font-size: 1rem; line-height: 2.2;
+  list-style: disc; padding-left: 24px; color: var(--ink); font-weight: 500;
+}
+.plano-cs-right { display: flex; flex-direction: column; gap: 20px; }
+.plano-cs-card p { font-size: 0.95rem; line-height: 1.6; color: var(--ink); opacity: 0.85; margin-top: 10px; }
+.plano-cs-badge {
+  display: inline-block; background: var(--ink); color: var(--offwhite);
+  padding: 10px 32px; border-radius: 28px;
+  font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem;
+}
+
+/* Slide: Estrutura do Projeto */
+#slide-estrutura-proj .slide__inner { padding-top: 72px; padding-bottom: 32px; }
+.estrutura-proj-layout {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: start; flex: 1;
+}
+.estrutura-proj-left { color: var(--ink); font-size: 1rem; line-height: 1.7; opacity: 0.85; }
+.estrutura-proj-right { display: flex; align-items: stretch; }
+.estrutura-proj-card {
+  background: var(--ink); border-radius: 16px; padding: 32px 36px;
+  display: flex; flex-direction: column; gap: 22px; flex: 1;
+}
+.estrutura-proj-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  color: var(--offwhite); font-size: 1rem; line-height: 1.55;
+}
+.estrutura-proj-check {
+  font-size: 28px; color: var(--gold); flex-shrink: 0;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ============================================================
+   PRINT / PDF
+   ============================================================ */
+@page { size: 1280px 720px; margin: 0; }
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  html, body {
+    width: 1280px !important; height: auto !important;
+    overflow: visible !important; background: #FCF9F9 !important;
+    margin: 0 !important; padding: 0 !important;
+  }
+  .noise-layer, #progress-bar, #hud-counter, #controls { display: none !important; }
+  #slides-wrapper {
+    position: static !important; width: 1280px !important; height: auto !important;
+    transform: none !important; inset: auto !important;
+  }
+  .slide {
+    position: relative !important; inset: auto !important;
+    width: 1280px !important; height: 720px !important;
+    opacity: 1 !important; pointer-events: auto !important;
+    transform: none !important;
+    display: flex !important;
+    page-break-after: always; break-after: page;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+  }
+  .slide:last-child { page-break-after: avoid; break-after: avoid; }
+  [data-anim], .slide__inner, .slide__inner > *, .slide__inner > * > *,
+  .cover-left, .cover-right, .cover-left > *,
+  .ds-left, .ds-right, .ds-left > *,
+  .ds-screenshot-float {
+    opacity: 1 !important; transform: none !important;
+  }
+  .ds-screenshot { max-width: 100% !important; max-height: 480px !important; width: auto !important; image-rendering: auto !important; }
+  .ds-screenshot-float { box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important; overflow: visible !important; }
+  .ds-right { overflow: visible !important; }
+}
 
