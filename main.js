@@ -3,9 +3,23 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const totalSlides = slides.length;
+  const allSlides = Array.from(document.querySelectorAll('.slide'));
+  let tema = 'cs';
+  let slides = allSlides;
+  let totalSlides = slides.length;
   let currentIdx = 0;
+
+  // Temas (apresentação comercial): slides com data-tema só aparecem no tema escolhido
+  function applyTema() {
+    const visivel = s => (!s.dataset.tema || s.dataset.tema === tema) &&
+      !(s.dataset.temaNot || '').split(',').includes(tema);
+    allSlides.forEach(s => s.classList.toggle('tema-off', !visivel(s)));
+    slides = allSlides.filter(visivel);
+    totalSlides = slides.length;
+    const uiT = document.getElementById('total-num');
+    if (uiT) uiT.textContent = totalSlides;
+  }
+  applyTema();
 
   const uiCurr = document.getElementById('curr-num');
   const uiTotal = document.getElementById('total-num');
@@ -29,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextSlide = slides[targetIdx];
 
     // Clear ALL inline styles so CSS classes are never overridden
-    slides.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    allSlides.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
 
     // Remove classes
     currSlide.classList.remove('is-active', 'is-leaving');
@@ -90,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function reactivateSlide() {
     // Suppress CSS transitions for one paint so the snap is invisible
     document.body.classList.add('no-transition');
-    slides.forEach(s => {
+    allSlides.forEach(s => {
       s.style.transform = '';
       s.style.opacity   = '';
       s.classList.remove('is-active', 'is-leaving');
@@ -136,11 +150,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Seletor de tema
+  document.querySelectorAll('.tema-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const atual = slides[currentIdx];
+      tema = btn.getAttribute('data-tema');
+      document.querySelectorAll('.tema-btn').forEach(b => b.classList.toggle('is-on', b === btn));
+      applyTema();
+      let idx = slides.indexOf(atual);
+      if (idx === -1) idx = slides.findIndex(s => s.dataset.tema === tema);
+      if (idx === -1) idx = 0;
+      currentIdx = idx;
+      reactivateSlide();
+      updateHUD();
+    });
+  });
+
   // Initial HUD setup
   updateHUD();
 
   // Set initial animation delays just in case
-  slides.forEach(slide => {
+  allSlides.forEach(slide => {
     const animatedElements = slide.querySelectorAll('[data-anim]');
     animatedElements.forEach((el, index) => {
       if(!el.style.getPropertyValue('--anim-delay')){
